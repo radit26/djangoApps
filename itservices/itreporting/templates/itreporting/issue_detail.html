@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student IT Services - IT Issue Reported</title>
+</head>
+<body>
+	{% extends "itreporting/base.html" %}
+		{% block content %}
+		<h1>IT Issue Reported</h1>
+			<!-- <h3>{{issue.type}} in {{issue.room}}</h3>
+			<h4>Reported By {{issue.student_name}}({{issue.course}}) on {{issue.date_reported}}</h4>
+			<p>{{issue.details}}</p>
+			<hr> -->
+			<h2 class="article-title">{{ object.type }} Issue in Room {{ object.room }}</h2>
+			<p class="mr-2">Posted by <a class="mr-2" href="{% url 'user-issues' object.author.username %}"> {{ object.author }}</a> on {{ object.date_submitted }}</p>
+			<p class="mr-2">{{ object.details }}</p>
+
+			{% if object.author == user %}
+			 <a class="btn btn-warning btn-sm mt-1 mb-1" href="{% url 'issue-update' object.id %}">Update</a>
+			 <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'issue-delete' object.id %}">Delete</a>
+			{% endif %}
+	{% endblock content %}
+
+<!-- </body>
+</html>
